@@ -8,7 +8,7 @@ export default function Header() {
 
   function handleLogout() {
     removeToken();
-    // você pode limpar também dados do usuário se salvar
+
     navigate('/login');
     window.location.reload();
   }
