@@ -6,7 +6,6 @@ import Catalog from './pages/Catalog';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import ProtectedRoute from './components/ProtectedRoute';
-import Library from './pages/Library';
 import BookDetail from './pages/BookDetail';
 
 function App() {
@@ -17,7 +16,6 @@ function App() {
         <Route path="/" element={<Catalog />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
-        <Route path="/library" element={<ProtectedRoute><Library /></ProtectedRoute>} />
         <Route path="/books/:id" element={<BookDetail />} />
       </Routes>
     </BrowserRouter>
