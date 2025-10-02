@@ -1,11 +1,5 @@
 const createPgPool = require('../config/db_postgres');
-const pool = createPgPool({
-  host: process.env.PGHOST,
-  user: process.env.PGUSER,
-  password: process.env.PGPASSWORD,
-  database: process.env.PGDATABASE,
-  port: process.env.PGPORT
-});
+const pool = createPgPool();
 
 const ensureTable = async () => {
   await pool.query(`
@@ -19,7 +13,7 @@ const ensureTable = async () => {
     );
   `);
 };
-ensureTable().catch(console.error);
+ensureTable().catch(err => console.error('Error ensuring users table:', err));
 
 async function createUser({ name, email, password_hash }) {
   const res = await pool.query(

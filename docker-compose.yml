@@ -1,0 +1,65 @@
+services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: libris-backend
+    environment:
+      JWT_SECRET: LibrisSuperSecretKey@2024
+      MONGO_URI:  mongodb://mongo_admin:LibrisMongo%232024@mongo:27017/libris_db?authSource=admin
+      PGHOST: postgres
+      PGUSER: libris_admin
+      PGPASSWORD: LibrisDB@2024!
+      PGDATABASE: libris_users
+      PGPORT: 5432
+      PORT: 4000
+      TOKEN_EXPIRY: 7d
+    depends_on:
+      - mongo
+      - postgres
+    ports:
+      - "4000:4000"
+    volumes:
+      - ./backend:/app
+      - /app/node_modules
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: libris-frontend
+    depends_on:
+      - backend
+    ports:
+      - "5173:80"
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+
+  mongo:
+    image: mongo:6
+    container_name: libris-mongo
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: mongo_admin
+      MONGO_INITDB_ROOT_PASSWORD: LibrisMongo2024
+      MONGO_INITDB_DATABASE: libris_db
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongodata:/data/db
+
+  postgres:
+    image: postgres:15
+    container_name: libris-postgres
+    environment:
+      POSTGRES_USER: libris_admin
+      POSTGRES_PASSWORD: LibrisDB@2024!
+      POSTGRES_DB: libris_users
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+volumes:
+  mongodata:
+  pgdata:
