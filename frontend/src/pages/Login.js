@@ -15,7 +15,6 @@ export default function Login() {
       const res = await apiPost('/auth/login', { email, password });
       if (res && res.token) {
         setToken(res.token);
-        // optionally store user
         if (res.user) localStorage.setItem('folium_user', JSON.stringify(res.user));
         navigate('/');
         window.location.reload();

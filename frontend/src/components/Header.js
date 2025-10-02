@@ -8,7 +8,6 @@ export default function Header() {
 
   function handleLogout() {
     removeToken();
-    // você pode limpar também dados do usuário se salvar
     navigate('/login');
     window.location.reload();
   }
@@ -22,7 +21,6 @@ export default function Header() {
         <Link to="/" style={linkStyle}>Catalog</Link>
         {token ? (
           <>
-            <Link to="/library" style={linkStyle}>My Library</Link>
             <button onClick={handleLogout} style={btnStyle}>Logout</button>
           </>
         ) : (
