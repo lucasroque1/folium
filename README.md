@@ -6,18 +6,30 @@ O objetivo é oferecer uma plataforma onde os usuários possam navegar, explorar
 
 ## Módulo de Front-end (React)
 
-O desenvolvimento realizado nesta parte do projeto corresponde ao Front-end da aplicação, utilizando React com React Router para gerenciar as rotas. O objetivo foi estruturar as principais páginas da aplicação, incluindo: 
+README – Módulo de Front-end (React)
 
-Página de Catálogo (/) – exibe os itens disponíveis. 
+O código desenvolvido corresponde ao módulo de Front-end da aplicação Folium, implementado em React.
+O principal objetivo foi estruturar a interface gráfica do usuário, permitindo navegação entre páginas e interação com os recursos principais da aplicação.
 
-Página de Login (/login) – responsável pela autenticação de usuários. 
+As páginas criadas incluem:
 
-Página de Registro (/register) – permite o cadastro de novos usuários. 
+Catálogo – exibe os itens disponíveis (livros, HQs, mangás).
 
-Biblioteca Pessoal (rota protegida) (/library) – acessível apenas para usuários autenticados, garantindo segurança por meio do componente ProtectedRoute. 
+Login e Registro – responsáveis pela autenticação e cadastro de novos usuários.
 
-Além disso, foi implementado o componente Header, que funciona como barra de navegação principal da aplicação. 
+Biblioteca Pessoal (rota protegida) – acessível somente por usuários autenticados, garantindo segurança com o uso de ProtectedRoute.
 
-No projeto final, esse módulo será integrado ao Back-end, consumindo as rotas da API para exibir dinamicamente os dados (como catálogo de livros e recomendações). Assim, o usuário poderá interagir com a aplicação de forma fluida e intuitiva, navegando entre páginas, autenticando-se e acessando suas informações personalizadas. 
+Além disso, foram desenvolvidos componentes reutilizáveis como o Header (barra de navegação) e o BookCard (exibição de cada item).
 
-Essa implementação facilita a comunicação entre o Front-end e o Back-end, garantindo a base visual e de navegação necessária para que as demais funcionalidades (como recomendações, login e biblioteca) sejam entregues ao usuário final.
+Integração no projeto final
+
+No projeto em grupo, este módulo será responsável por consumir as rotas do Back-end (já implementadas por outro integrante), exibindo dinamicamente os dados para o usuário final.
+Dessa forma, o Front-end será a camada visual e interativa, permitindo que o usuário:
+
+Acesse o catálogo em tempo real.
+
+Realize login/registro para autenticação.
+
+Gerencie sua biblioteca pessoal, que é salva no banco de dados via API.
+
+Essa implementação garante a base visual do sistema, possibilitando a integração fluida com as demais partes do projeto.
