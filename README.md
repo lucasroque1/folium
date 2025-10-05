@@ -44,7 +44,7 @@ Organização modular de componentes no Front-end
 
 Rotas protegidas para garantir o acesso apenas de usuários autenticados
 
-## Módulo de Front-end (React)
+## Descrição do objetivo do código-fonte feito Módulo de Front-end (React)
 
 README – Módulo de Front-end (React)
 
