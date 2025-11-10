@@ -20,7 +20,7 @@ router.get('/', async (req, res) => {
   const filter = {};
   if (type) filter.type = type;
   if (genre) filter.genres = genre;
-  if (q) filter.$text = { $search: q }; // requires text index if used
+  if (q) filter.$text = { $search: q };
   try {
     const items = await Book.find(filter).skip((page - 1) * limit).limit(parseInt(limit));
     res.json(items);

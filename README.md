@@ -43,3 +43,4 @@ Arquitetura Full-Stack com integração entre Front-end (React) e Back-end (Node
 Organização modular de componentes no Front-end
 
 Rotas protegidas para garantir o acesso apenas de usuários autenticados
+
