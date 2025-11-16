@@ -12,11 +12,17 @@ export default function Register() {
   async function handleSubmit(e) {
     e.preventDefault();
     setErr('');
+
     try {
       const res = await apiPost('/auth/register', { name, email, password });
+
       if (res && res.token) {
         setToken(res.token);
-        if (res.user) localStorage.setItem('folium_user', JSON.stringify(res.user));
+
+        if (res.user) {
+          localStorage.setItem('folium_user', JSON.stringify(res.user));
+        }
+
         navigate('/');
         window.location.reload();
       } else {
@@ -30,11 +36,29 @@ export default function Register() {
   return (
     <div style={{ maxWidth: 420, margin: '24px auto', padding: 12 }}>
       <h2>Create account</h2>
+
       <form onSubmit={handleSubmit} style={{ display: 'grid', gap: 10 }}>
-        <input value={name} onChange={e => setName(e.target.value)} placeholder="Name" />
-        <input value={email} onChange={e => setEmail(e.target.value)} placeholder="Email" />
-        <input value={password} onChange={e => setPassword(e.target.value)} placeholder="Password" type="password" />
+        <input
+          value={name}
+          onChange={e => setName(e.target.value)}
+          placeholder="Name"
+        />
+
+        <input
+          value={email}
+          onChange={e => setEmail(e.target.value)}
+          placeholder="Email"
+        />
+
+        <input
+          value={password}
+          onChange={e => setPassword(e.target.value)}
+          placeholder="Password"
+          type="password"
+        />
+
         <button type="submit">Register</button>
+
         {err && <div style={{ color: 'red' }}>{err}</div>}
       </form>
     </div>

@@ -1,5 +1,5 @@
-// simples helper para comunicação com o backend
-const API_BASE = process.env.REACT_APP_API_URL || 'http://localhost:4000';
+// frontend/src/api.js
+const API_BASE = (process.env.REACT_APP_API_URL || 'http://localhost:4000').replace(/\/$/, '');
 
 function getToken() {
   return localStorage.getItem('folium_token');
@@ -11,15 +11,25 @@ function setToken(token) {
 
 function removeToken() {
   localStorage.removeItem('folium_token');
+  localStorage.removeItem('folium_user');
 }
 
 async function request(path, opts = {}) {
+  // garante que o path começa com /api
+  const normalizedPath = path.startsWith('/api') ? path : `/api${path.startsWith('/') ? '' : '/'}${path}`;
+  const url = `${API_BASE}${normalizedPath}`;
+
   const headers = opts.headers || {};
-  headers['Content-Type'] = 'application/json';
+  // only add content-type when there is a body and it's JSON
+  if (opts.body && !(opts.body instanceof FormData)) headers['Content-Type'] = 'application/json';
+
   const token = getToken();
   if (token) headers['Authorization'] = `Bearer ${token}`;
-  const res = await fetch(`${API_BASE}${path}`, { ...opts, headers });
+
+  const res = await fetch(url, { ...opts, headers });
+
   if (res.status === 204) return null;
+
   const text = await res.text();
   try { return JSON.parse(text); } catch { return text; }
 }

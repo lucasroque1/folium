@@ -23,7 +23,13 @@ export default function BookDetail() {
   return (
     <div style={{ padding: 20 }}>
       <h2>{book.title}</h2>
-      {book.coverUrl && <img src={book.coverUrl} alt={book.title} style={{ width: 200 }} />}
+      {book.coverUrl && (
+        <img
+          src={book.coverUrl}
+          alt={book.title}
+          style={{ width: 200 }}
+        />
+      )}
       <p><strong>Authors:</strong> {(book.authors || []).join(', ')}</p>
       <p><strong>Type:</strong> {book.type}</p>
       <p><strong>Description:</strong></p>
