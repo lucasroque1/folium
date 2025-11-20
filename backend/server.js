@@ -1,38 +1,46 @@
-require('dotenv').config();
 const express = require('express');
+const dotenv = require('dotenv');
 const cors = require('cors');
+
+dotenv.config();
+
+
 const connectMongo = require('./config/db_mongo');
-const createPgPool = require('./config/db_postgres');
+const createPgPool = require('./config/db_postgres'); 
+
 
 const authRoutes = require('./routes/auth.routes');
 const booksRoutes = require('./routes/books.routes');
+const aiRoutes = require('./routes/ai.routes'); 
+
 
 const app = express();
+const PORT = process.env.PORT || 4000;
+
 app.use(cors());
-app.use(express.json());
+app.use(express.json()); 
 
-(async () => {
-  try {
-    const envMongoUri = process.env.MONGO_URI || null;
-    await connectMongo(envMongoUri);
-
-    const pool = createPgPool();
+async function startServer() {
     try {
-      await pool.query('SELECT 1');
-      console.log('Connected to Postgres');
-    } catch (pgErr) {
-      console.warn('Postgres connection test failed:', pgErr.message);
+        await connectMongo();
+        
+        createPgPool(); 
+
+        app.use('/api/auth', authRoutes);
+        app.use('/api/books', booksRoutes);
+
+        app.get('/', (req, res) => {
+            res.send('API Folium (Libris) está online!');
+        });
+        
+        app.listen(PORT, () => {
+            console.log(`Server running on port ${PORT}`);
+        });
+
+    } catch (err) {
+        console.error('Falha ao iniciar o servidor:', err);
+        process.exit(1);
     }
+}
 
-    app.use('/api/auth', authRoutes);
-    app.use('/api/books', booksRoutes);
-
-    app.get('/api/health', (req, res) => res.json({ ok: true, ts: Date.now() }));
-
-    const PORT = process.env.PORT || 4000;
-    app.listen(PORT, () => console.log(`Backend running on ${PORT}`));
-  } catch (err) {
-    console.error('Error during initial DB connections', err);
-    process.exit(1);
-  }
-})();
+startServer();

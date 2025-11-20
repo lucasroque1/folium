@@ -44,6 +44,7 @@ Organização modular de componentes no Front-end
 
 Rotas protegidas para garantir o acesso apenas de usuários autenticados
 
+<<<<<<< HEAD
 ## Descrição do objetivo do código-fonte feito Módulo de Front-end (React)
 
 README – Módulo de Front-end (React)
@@ -73,3 +74,5 @@ Realize login/registro para autenticação.
 Gerencie sua biblioteca pessoal, que é salva no banco de dados via API.
 
 Essa implementação garante a base visual do sistema, possibilitando a integração fluida com as demais partes do projeto.
+=======
+>>>>>>> 17e401fd6969841d0da36c207961aa2ee4460866
