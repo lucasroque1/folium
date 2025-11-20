@@ -73,6 +73,3 @@ Realize login/registro para autenticação.
 
 Gerencie sua biblioteca pessoal, que é salva no banco de dados via API.
 
-Essa implementação garante a base visual do sistema, possibilitando a integração fluida com as demais partes do projeto.
-=======
->>>>>>> 17e401fd6969841d0da36c207961aa2ee4460866
