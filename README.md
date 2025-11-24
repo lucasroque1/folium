@@ -73,3 +73,38 @@ Realize login/registro para autenticação.
 
 Gerencie sua biblioteca pessoal, que é salva no banco de dados via API.
 
+## Diagrama de arquitetura da aplicação
+
+  ┌───────────────────────────┐
+  │         Usuário           │
+  │ (Navegador / Desktop)     │
+  └─────────────┬─────────────┘
+                │
+                ▼
+  ┌───────────────────────────┐
+  │      Frontend React      │
+  │  • Interface do usuário  │
+  │  • Rotas                 │
+  │  • Consome API Rest      │
+  ─────────────┬─────────────┘
+               │ Requisições HTTP (GET/POST/PUT/DEL)
+               ▼
+  ┌────────────────────────────────────────────────┐
+  │               Backend Node.js                  │
+  │                 (Express.js)                   │
+  │  • Endpoints REST                              │
+  │  • Lógica de negócio                           │
+  │  • Autenticação/Autorização                    │
+  │  • Validação de dados                          │
+  │  • Integração com APIs externas (ex: Google)   │
+  └─────────────┬──────────────────────────────────┘
+                │ Consultas SQL
+                ▼
+  ┌──────────────────────────────────────┐
+  │        Banco de Dados Relacional		 │
+  │              (PostgreSQL)            │
+  │ • Tabelas de usuários                │
+  │ • Tabelas de livros/mangás           │
+  │ • Histórico e favoritos              │
+  │ • Registros de avaliações            │
+  └──────────────────────────────────────┘
