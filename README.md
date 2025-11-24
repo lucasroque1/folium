@@ -101,7 +101,7 @@ Gerencie sua biblioteca pessoal, que é salva no banco de dados via API.
                   │ Consultas SQL
                   ▼
     ┌──────────────────────────────────────┐
-    │        Banco de Dados Relacional		 │
+    │        Banco de Dados Relacional	   │
     │              (PostgreSQL)            │
     │ • Tabelas de usuários                │
     │ • Tabelas de livros/mangás           │
